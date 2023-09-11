@@ -1,15 +1,26 @@
 <!DOCTYPE html>
 <html>
-    <head>
-        <title> Timer</title>
-    </head>
-    <body>
-        <div id="js_timer">
-            <div id="timer">
-                00:00
-            </div>
-            <button onclick="pause()">Pause</button>
-        </div>
-    </body>
-</html>
 
+<head>
+    <title>Timer</title>
+    <link rel="stylesheet" href="popup.css">
+</head>
+
+<body>
+
+    <container id="Timers">
+        <button id="grind_time"> Grind Time</button>
+        <button id="chill">Chill</button>
+
+        <p id="timer"></p>
+    </container>
+    
+    <container id="control">
+        <button id="start_timer" onclick="start()">Start</button>
+        <button id="pause_timer" onclick="pause()">Pause</button>
+    </container>
+
+    <script src="contentScript.js"></script>
+</body>
+
+</html>
