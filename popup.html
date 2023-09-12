@@ -8,19 +8,23 @@
 
 <body>
 
-    <container id="Timers">
+    <h3> Jarodomo Timer</h3>
+
+    <div class="timer_control">
         <button id="grind_time"> Grind Time</button>
         <button id="chill">Chill</button>
+    </div>
 
-        <p id="timer"></p>
-    </container>
-    
-    <container id="control">
-        <button id="start_timer" onclick="start()">Start</button>
+    <div id="timer" class="hidden">
+        <p id="timerDisplay">25:00</p>
+    </div>
+
+    <div class="control">
+        <button id="start_timer">Start</button>
         <button id="pause_timer" onclick="pause()">Pause</button>
-    </container>
+    </div>
 
-    <script src="contentScript.js"></script>
+    <script src="popup.js"></script>
 </body>
 
 </html>
