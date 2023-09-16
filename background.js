@@ -1,33 +1,29 @@
-let timeLeft = 0;
-let timeinterval;
+let timer;
+let remainingTime = 1500; // 25 minutes in seconds
 
-function startTimer(minutes) {
-    timeLeft = minutes * 60;
-
-    if (timeinterval) {
-        clearInterval(timeinterval);
-    }
-
-    timeinterval = setInterval(countdown, 1000);
-}
-
-function countdown() {
-    if (timeLeft > 0) {
-        const minutes = Math.floor(timeLeft / 60);
-        let seconds = timeLeft % 60;
-
-        chrome.runtime.sendMessage({ time: `${minutes}: ${seconds}` });
-
-        timeLeft--;
-    } else {
-        clearInterval(timeinterval);
-        chrome.runtime.sendMessage({ time: '00:00' })
-    }
-}
-
-chrome.runtime.onMessage.addListener(function (request) {
-    if (request.action === 'startTimer') {
-        // Start the timer with the specified minutes
-        startTimer(request.minutes);
+chrome.runtime.onMessage.addListener((message) => {
+    if (message.startTimer) {
+        startTimer();
     }
 });
+
+function startTimer() {
+    chrome.alarms.create({ delayInMinutes: 1 });
+}
+
+chrome.alarms.onAlarm.addListener(() => {
+    remainingTime--;
+    if (remainingTime <= 0) {
+        chrome.notifications.create({
+            type: "basic",
+            title: "Pomodoro Timer",
+            message: "Time's up! Take a break.",
+        });
+        remainingTime = 1500; // Reset timer for the next cycle
+    }
+
+    // Send the remaining time to the popup
+    chrome.runtime.sendMessage({ remainingTime });
+});
+ 
+

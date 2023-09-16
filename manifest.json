@@ -1,24 +1,22 @@
 {
-    "manifest_version": 3,
     "name": "Jaromodoro Timer",
-    "version": "1.0",
     "description": "My Pomodoro Timer for getting work done",
+    "version": "1.0",
+    "manifest_version": 3,
+    "background": {
+        "service_worker": "background.js"
+    },
     "icons": {
         "16": "/images/icon16.png",
         "48": "/images/icon48.png",
         "128": "/images/icon128.png"
-    },
-    "action": {
-        "default_icon": "/images/icon16.png",
-        "default_popup": "popup.html",
-        "default_title": "Jaromodoro Timer"
     },
     "permissions": [
         "storage",
         "alarms",
         "notifications"
     ],
-    "background": {
-        "service_worker": "background.js"
+    "action": {
+        "default_popup": "popup.html"
     }
 }

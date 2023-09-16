@@ -35,5 +35,5 @@ button:hover {
 
 /* Hide the timer initially */
 .hidden {
-    display: none;
+    display: block;
 }
